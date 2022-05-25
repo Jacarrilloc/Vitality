@@ -2,6 +2,7 @@ package com.netteam.vitality;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
@@ -33,19 +34,9 @@ public class RegistroActivity extends AppCompatActivity {
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrarUsuario();
+                startActivity(new Intent(RegistroActivity.this,ActividadPrincipal.class));
             }
         });
     }
 
-    private void registrarUsuario(){
-        String correoU = correo.getText().toString();
-        String contra = contrasena.getText().toString();
-        if(TextUtils.isEmpty(correoU) && TextUtils.isEmpty(contra)){
-            Toast.makeText(this, "NO SE INGRESARON DATOS", Toast.LENGTH_SHORT).show();
-        }else{
-            //crear.createUserWithEmailAndPassword(correoU,contra)
-            Toast.makeText(this, "ESOOOOOOOOOOOOOOOOOOOOOOOOO", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

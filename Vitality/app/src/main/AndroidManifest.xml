@@ -10,21 +10,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".RegistroActivity"
-            android:screenOrientation="portrait"
+            android:name=".InstagramAct"
             android:exported="false" />
+        <activity
+            android:name=".PremiumAct"
+            android:exported="false" />
+        <activity
+            android:name=".LlamadaAct"
+            android:exported="false" />
+        <activity
+            android:name=".CorazonAct"
+            android:exported="false" />
+        <activity
+            android:name=".CalendarioAct"
+            android:exported="false" />
+        <activity
+            android:name=".RegistroActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActividadPrincipal"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

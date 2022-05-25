@@ -39,95 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarSesion();
+                startActivity(new Intent(LoginActivity.this,ActividadPrincipal.class));
             }
         });
 
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrar();
+                startActivity(new Intent(LoginActivity.this,RegistroActivity.class));
             }
         });
-    }
-
-    private void iniciarSesion(){
-
-        String usuario = correo.getText().toString();
-        String contra = contrasena.getText().toString();
-
-        if(validar(usuario,contra)){
-            usuarioLog.signInWithEmailAndPassword(usuario,contra).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        FirebaseUser usuarioActual = usuarioLog.getCurrentUser();
-                        updateUI(usuarioActual);
-                    }else{
-                        String error = task.getException().getMessage();
-                        Log.i("FirebaseInfo",error);
-                        updateUI(null);
-                    }
-                }
-            });
-        }
-    }
-
-    private boolean validar(String email,String contra){
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(contra)){
-            if(TextUtils.isEmpty(email) && TextUtils.isEmpty(contra)) {
-                Toast.makeText(this,"No se ha Ingresado el Email y la Contraseña",Toast.LENGTH_LONG).show();
-            }else{
-                if(TextUtils.isEmpty(email)){
-                    Toast.makeText(this,"No se ha Ingresado el Email",Toast.LENGTH_LONG).show();
-                }
-                if(TextUtils.isEmpty(contra)){
-                    Toast.makeText(this,"No se ha Ingresado la Contraseña",Toast.LENGTH_LONG).show();
-                }
-            }
-            return false;
-        }else{
-            if(validarCorreo(email) && validarContra(contra)){
-                return true;
-            }else{
-                if(!validarCorreo(email) && !validarContra(contra))
-                    Toast.makeText(this,"Correo y Contraseña no Validos",Toast.LENGTH_LONG).show();
-                else{
-                    if(!validarCorreo(email))
-                        Toast.makeText(this,"Correo Ingresado no Valido",Toast.LENGTH_LONG).show();
-                    if(!validarContra(contra))
-                        Toast.makeText(this,"Contraseña Ingresada no Valida",Toast.LENGTH_LONG).show();
-                }
-                return false;
-            }
-        }
-    }
-
-    private boolean validarCorreo(String email){
-        if(!email.contains("@") || !email.contains(".") || email.length() < 5)
-            return false;
-        return true;
-    }
-
-    private boolean validarContra(String contra){
-        if(contra.length() < 4)
-            return false;
-        return true;
-    }
-
-    private void updateUI(FirebaseUser usuarioActual){
-        if(usuarioActual != null){
-            Intent actividadInicio = new Intent(this,ActividadPrincipal.class);
-            String dato = usuarioActual.getEmail();
-            actividadInicio.putExtra("Usuario",dato);
-            startActivity(actividadInicio);
-        }else{
-            correo.setText("");
-            contrasena.setText("");
-        }
-    }
-
-    private void registrar(){
-        startActivity(new Intent(this,RegistroActivity.class));
     }
 }
